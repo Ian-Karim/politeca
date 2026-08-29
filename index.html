@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politeca - Sistema de Reservas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-film"></i> Politeca</h1>
+            <p>Sistema de reservas de películas</p>
+            
+            <div class="user-section">
+                <button id="login-btn"><i class="fas fa-user"></i> Iniciar Sesión</button>
+                <button id="register-btn"><i class="fas fa-user-plus"></i> Registrarse</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="cartelera">
+                <i class="fas fa-clipboard-list"></i> Cartelera
+            </div>
+            <div class="tab" data-tab="funcion">
+                <i class="fas fa-clock"></i> Función
+            </div>
+            <div class="tab" data-tab="boletos">
+                <i class="fas fa-ticket-alt"></i> Boletos
+            </div>
+            <div class="tab" data-tab="asientos">
+                <i class="fas fa-couch"></i> Asientos
+            </div>
+            <div class="tab" data-tab="pago">
+                <i class="fas fa-credit-card"></i> Pago
+            </div>
+            <div class="tab" data-tab="confirmacion">
+                <i class="fas fa-check-circle"></i> Confirmación
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Pestaña 1: Cartelera -->
+            <div class="tab-content active" id="cartelera-content">
+                <h2>Películas en Cartelera</h2>
+                <p>Selecciona una película para ver los horarios disponibles</p>
+                
+                <div class="movie-grid">
+                    <div class="movie-card" data-movie="1">
+                        <div class="movie-poster" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX1000_.jpg')"></div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">The Batman</h3>
+                            <p class="movie-details">Duración: 2h 56m • Acción/Crimen</p>
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card" data-movie="2">
+                        <div class="movie-poster" style="background-image: url('https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg')"></div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Spider-Man: No Way Home</h3>
+                            <p class="movie-details">Duración: 2h 28m • Acción/Aventura</p>
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card" data-movie="3">
+                        <div class="movie-poster" style="background-image: url('https://m.media-amazon.com/images/M/MV5BOTA5YmQ2YzItZDEwNC00ZTkwLWIxMWItZGY2ZGNiNDU4YzMyXkEyXkFqcGdeQXVyMTA1OTcyNDQ4._V1_FMjpg_UX1000_.jpg')"></div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">Duna</h3>
+                            <p class="movie-details">Duración: 2h 35m • Ciencia Ficción</p>
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card" data-movie="4">
+                        <div class="movie-poster" style="background-image: url('https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg')"></div>
+                        <div class="movie-info">
+                            <h3 class="movie-title">The Avengers</h3>
+                            <p class="movie-details">Duración: 2h 23m • Acción/Aventura</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <div></div>
+                    <button class="btn btn-next" data-next="funcion">
+                        Siguiente <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+<!-- Pestaña 2: Función - Versión corregida -->
+<div class="tab-content" id="funcion-content">
+    <h2>Selecciona una función</h2>
+    <p>Película: <span id="selected-movie">The Batman</span></p>
+    
+    <div class="section-container">
+        
+        <div id="horarios-container" class="showtimes">
+            <!-- Los horarios se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+    
+    <div class="section-container">
+        
+        <div id="salas-container" class="rooms-container">
+            <!-- Las salas se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-prev" data-prev="cartelera">
+            <i class="fas fa-arrow-left"></i> Anterior
+        </button>
+        <button class="btn btn-next" data-next="boletos">
+            Siguiente <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+</div>
+
+            <!-- Pestaña 3: Boletos -->
+            <div class="tab-content" id="boletos-content">
+                <h2>Selecciona tus boletos</h2>
+                <p>Función: <span id="selected-showtime">Vie 15 - 7:30 PM</span>, Sala: <span id="selected-room">Sala 3 - IMAX</span></p>
+                
+                <div class="tickets-container">
+                    <div class="ticket-type">
+                        <h3>Adulto</h3>
+                        <p class="ticket-price">$120.00 MXN</p>
+                        <div class="ticket-controls">
+                            <button class="ticket-btn" data-action="decrease" data-type="adult">-</button>
+                            <span class="ticket-count" id="adult-count">0</span>
+                            <button class="ticket-btn" data-action="increase" data-type="adult">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-type">
+                        <h3>Niño</h3>
+                        <p class="ticket-price">$80.00 MXN</p>
+                        <div class="ticket-controls">
+                            <button class="ticket-btn" data-action="decrease" data-type="child">-</button>
+                            <span class="ticket-count" id="child-count">0</span>
+                            <button class="ticket-btn" data-action="increase" data-type="child">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-type">
+                        <h3>Persona Mayor</h3>
+                        <p class="ticket-price">$60.00 MXN</p>
+                        <div class="ticket-controls">
+                            <button class="ticket-btn" data-action="decrease" data-type="senior">-</button>
+                            <span class="ticket-count" id="senior-count">0</span>
+                            <button class="ticket-btn" data-action="increase" data-type="senior">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-summary">
+                    <h3>Resumen de compra</h3>
+                    <div id="ticket-details">
+                        <p>No hay boletos seleccionados</p>
+                    </div>
+                    <div class="ticket-total">
+                        <strong>Total: $<span id="total-amount">0.00</span> MXN</strong>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-prev" data-prev="funcion">
+                        <i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+                    <button class="btn btn-next" data-next="asientos">
+                        Siguiente <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pestaña 4: Asientos -->
+<div class="tab-content" id="asientos-content">
+    <h2>Selecciona tus asientos</h2>
+    <p>Función: <span id="selected-showtime-asientos">Vie 15 - 7:30 PM</span>, Sala: <span id="selected-room-asientos">Sala 3 - IMAX</span></p>
+    <p>Boletos seleccionados: <span id="tickets-count">0</span></p>
+    
+    <!-- Leyenda de asientos -->
+    <div class="seats-legend">
+        <div class="legend-item">
+            <div class="legend-color legend-available"></div>
+            <span>Disponible</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-selected"></div>
+            <span>Seleccionado</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-occupied"></div>
+            <span>Ocupado</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-blocked"></div>
+            <span>Bloqueado</span>
+        </div>
+    </div>
+    
+    <div class="seats-container">
+        <div class="screen">Pantalla</div>
+        <div class="seats-grid" id="seats-grid">
+            <!-- Asientos generados dinámicamente con JavaScript -->
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <h3>Asientos seleccionados: <span id="selected-seats-count">0</span></h3>
+            <div id="selected-seats-list"></div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-prev" data-prev="boletos">
+            <i class="fas fa-arrow-left"></i> Anterior
+        </button>
+        <button class="btn btn-next" data-next="pago">
+            Siguiente <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+</div>
+
+            <!-- Pestaña 5: Pago -->
+            <div class="tab-content" id="pago-content">
+                <h2>Completa tu información de pago</h2>
+                
+<!-- Reemplaza los campos de pago existentes con estos -->
+<div class="payment-form">
+    <div class="form-group">
+        <label for="name">Nombre completo *</label>
+        <input type="text" id="name" placeholder="Ingresa tu nombre completo" required 
+               pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,}" 
+               title="Solo letras y espacios (mínimo 3 caracteres)">
+        <span class="validation-message" id="name-validation"></span>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Correo electrónico *</label>
+        <input type="email" id="email" placeholder="Ingresa tu correo electrónico" required>
+        <span class="validation-message" id="email-validation"></span>
+    </div>
+    
+    <div class="form-group">
+        <label for="card-number">Número de tarjeta *</label>
+        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" required
+               pattern="\d{4} \d{4} \d{4} \d{4}" 
+               title="Formato: 1234 5678 9012 3456">
+        <span class="validation-message" id="card-validation"></span>
+    </div>
+    
+    <div class="card-group">
+        <div class="form-group">
+            <label for="expiry">Fecha de vencimiento *</label>
+            <input type="text" id="expiry" placeholder="MM/AA" maxlength="5" required
+                   pattern="(0[1-9]|1[0-2])\/([0-9]{2})" 
+                   title="Formato: MM/AA (mes/año)">
+            <span class="validation-message" id="expiry-validation"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="cvv">CVV *</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="4" required
+                   pattern="\d{3,4}" 
+                   title="3 o 4 dígitos">
+            <span class="validation-message" id="cvv-validation"></span>
+        </div>
+    </div>
+</div>
+<!-- Agrega este código en el formulario de pago, después de los campos -->
+<div class="form-requirements">
+    <p><strong>Requisitos del formulario:</strong></p>
+    <ul>
+        <li>Nombre completo: Solo letras y espacios (mínimo 3 caracteres)</li>
+        <li>Correo electrónico: Formato válido (ejemplo@dominio.com)</li>
+        <li>Número de tarjeta: 16 dígitos (se aceptan espacios)</li>
+        <li>Fecha de vencimiento: MM/AA (mes/año)</li>
+        <li>CVV: 3 o 4 dígitos</li>
+    </ul>
+</div>         
+                <div class="navigation">
+                    <button class="btn btn-prev" data-prev="asientos">
+                        <i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+                    <button class="btn btn-next" data-next="confirmacion">
+                        Finalizar Reserva <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pestaña 6: Confirmación -->
+            <div class="tab-content" id="confirmacion-content">
+                <div class="confirmation">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>¡Reserva Confirmada!</h2>
+                    
+                    <div class="reservation-details">
+                        <p><strong>Película:</strong> <span id="conf-movie">The Batman</span></p>
+                        <p><strong>Función:</strong> <span id="conf-showtime">Vie 15 - 7:30 PM</span></p>
+                        <p><strong>Sala:</strong> <span id="conf-room">Sala 3 - IMAX</span></p>
+                        <p><strong>Asientos:</strong> <span id="conf-seats">A1, A2</span></p>
+                        <p><strong>Boletos:</strong> <span id="conf-tickets">2 Adultos</span></p>
+                        <p><strong>Total:</strong> <span id="conf-total">$240.00 MXN</span></p>
+                        <p><strong>Nombre:</strong> <span id="conf-name">Juan Pérez</span></p>
+                        <p><strong>Correo:</strong> <span id="conf-email">juan@example.com</span></p>
+                        <p><strong>Código de reserva:</strong> <span id="conf-code">ABC123XYZ</span></p>
+                    </div>
+                    
+                    <p style="margin-top: 20px;">Hemos enviado los detalles de tu reserva a tu correo electrónico.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <button class="btn" id="new-reservation">
+                            <i class="fas fa-plus"></i> Hacer otra reserva
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Sistema de Reservas de Cine - Conectado a MySQL</p>
+            <p>Desarrollado para Visual Studio Code</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <h2>Iniciar Sesión</h2>
+            
+            <div class="form-group">
+                <label for="login-email">Correo electrónico</label>
+                <input type="email" id="login-email" placeholder="Ingresa tu correo">
+            </div>
+            
+            <div class="form-group">
+                <label for="login-password">Contraseña</label>
+                <input type="password" id="login-password" placeholder="Ingresa tu contraseña">
+            </div>
+            
+            <div class="modal-options">
+                <button class="btn" id="do-login">
+                    <i class="fas fa-sign-in-alt"></i> Ingresar
+                </button>
+                <button class="btn btn-prev" id="close-login">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px;">
+                ¿No tienes cuenta? <a href="#" id="go-to-register">Regístrate aquí</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <h2>Crear Cuenta</h2>
+            
+            <div class="form-group">
+                <label for="register-name">Nombre completo</label>
+                <input type="text" id="register-name" placeholder="Ingresa tu nombre completo">
+            </div>
+            
+            <div class="form-group">
+                <label for="register-email">Correo electrónico</label>
+                <input type="email" id="register-email" placeholder="Ingresa tu correo electrónico">
+            </div>
+            
+            <div class="form-group">
+                <label for="register-password">Contraseña</label>
+                <input type="password" id="register-password" placeholder="Crea una contraseña segura">
+            </div>
+            
+            <div class="form-group">
+                <label for="register-confirm">Confirmar contraseña</label>
+                <input type="password" id="register-confirm" placeholder="Repite tu contraseña">
+            </div>
+            
+            <div class="modal-options">
+                <button class="btn" id="do-register">
+                    <i class="fas fa-user-plus"></i> Registrarse
+                </button>
+                <button class="btn btn-prev" id="close-register">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px;">
+                ¿Ya tienes cuenta? <a href="#" id="go-to-login">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

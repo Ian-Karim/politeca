@@ -1,0 +1,5 @@
+config.php
+test_db.php
+debug_asientos.php
+popular_asientos.php
+*.log 
